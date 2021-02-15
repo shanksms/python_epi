@@ -7,6 +7,6 @@ def merge_sorted_lists(l1, l2):
         else:
             tail.next, l1 = l1, l1.next
         tail = tail.next
-    tail = l1 or l2
+    tail.next = l1 or l2
     return dummy_head.next
 
