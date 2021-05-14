@@ -1,5 +1,6 @@
 def is_palindrome(input_str):
-    #this produces a generator: (input_str[i] == input_str[~i] for i in range(len(input_str)//2))
+    #this produces a generator object: (input_str[i] == input_str[~i] for i in range(len(input_str)//2))
+    # all function iterates over it by calling next
     return all((input_str[i] == input_str[~i] for i in range(len(input_str)//2)))
 
 if __name__ == '__main__':
