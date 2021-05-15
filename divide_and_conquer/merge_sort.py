@@ -1,12 +1,9 @@
 def merge(left, arr, mid, right):
     n1 = mid - left + 1
     n2 = right - mid
-    A = []
-    B = []
-    for i in range(0, n1):
-        A.append(arr[left + i])
-    for i in range(0, n2):
-        B.append(arr[mid + 1 + i])
+    A = [arr[left + x] for x in range(0, n1)]
+    B = [arr[mid + 1 + x] for x in range(0, n2)]
+
     i, j, k = 0, 0, left
     while i < n1 and j < n2:
         if A[i] < B[j]:
@@ -42,9 +39,9 @@ if __name__ == '__main__':
     n = len(arr)
     print("Given array is")
     for i in range(n):
-        print("%d" % arr[i]),
+        print("%d" % arr[i], end=' '),
 
     merge_sort(arr, 0, n - 1)
     print("\n\nSorted array is")
     for i in range(n):
-        print("%d" % arr[i]),
+        print("%d" % arr[i], end=' '),
