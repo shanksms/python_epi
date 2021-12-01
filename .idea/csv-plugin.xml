@@ -24,6 +24,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\strings\spread_sheet_column_encoding.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\strings\string_to_int.py">
           <value>
             <Attribute>
