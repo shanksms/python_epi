@@ -36,9 +36,18 @@ def check_height_balanced_tree(root):
         return False
     return check_heights(root).isBalanced
 
+def find_height(root: BinaryTreeNode):
+    if not root:
+        return -1
+    lh = find_height(root.left)
+    rh = find_height(root.right)
+
+    return max(lh, rh) + 1
+
 
 if __name__ == '__main__':
     left = BinaryTreeNode(2, None, None)
     right = BinaryTreeNode(3, None, None)
     root = BinaryTreeNode(1, left=left, right=right)
     print(check_height_balanced_tree(root))
+    print(find_height(left))
