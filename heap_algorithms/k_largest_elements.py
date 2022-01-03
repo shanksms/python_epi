@@ -1,7 +1,7 @@
 from queue import PriorityQueue
 
 
-def kLargest(self, arr, n, k):
+def kLargest(arr, k):
     pq = PriorityQueue()
     # code here
     for element in arr:
