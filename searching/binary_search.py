@@ -74,3 +74,29 @@ def first_occurence_of_element_greater_than_key(sorted_list: List, target: int) 
         else:
             low = mid + 1
     return result
+
+
+"""
+Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
+
+Integers in each row are sorted from left to right.
+The first integer of each row is greater than the last integer of the previous row
+"""
+
+
+def search_sorted_matrix(matrix, target):
+    if len(matrix) == 0:
+        raise ValueError('Blank matrix')
+    rows, columns = len(matrix), len(matrix[0])
+    low, high = 0, rows * columns
+    while low <= high:
+        mid = int(high - (high - low) / 2)
+        row_idx = mid // columns
+        col_idx = mid % columns
+        if matrix[row_idx][col_idx] == target:
+            return row_idx, col_idx
+        elif matrix[row_idx][col_idx] > target:
+            high = mid - 1
+        else:
+            low = mid + 1
+    return -1

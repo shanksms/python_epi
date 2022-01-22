@@ -21,5 +21,15 @@ def test_find_first_occurrence(sorted_input_list, target, result):
                          ]
 
 )
-def test_first_occurence_of_element_greater_than_key(sorted_input_list, target, result):
+def test_first_occurrence_of_element_greater_than_key(sorted_input_list, target, result):
     assert binary_search.first_occurence_of_element_greater_than_key(sorted_input_list, target) == result
+
+@pytest.mark.parametrize(
+    'matrix, target, result',
+    [
+        ([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 4, (1, 0)),
+        ([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 5, (1, 1))
+    ]
+)
+def test_search_sorted_matrix(matrix, target, result):
+    assert binary_search.search_sorted_matrix(matrix, target) == result
