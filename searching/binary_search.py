@@ -100,3 +100,34 @@ def search_sorted_matrix(matrix, target):
         else:
             low = mid + 1
     return -1
+
+
+def search_element_equal_to_index(sorted_list: List):
+    """
+    Algorithm:
+    1. create another List, by subtracting elements of sorted_list from their index.
+    new_list = [element-idx for idx, element in enumerate(sorted_list)]
+    2. find 0 in the new list
+     result = binary_search(new_list, 0)
+     return result
+    :param sorted_list:
+    :return:
+    """
+    '''
+        low, high = 0, len(sorted_list)
+        while low <= high:
+            mid = int(high - (high - low) / 2)
+            if sorted_list[mid] == mid:
+                return mid
+            elif sorted_list[mid] > mid:
+                high = mid - 1
+            else:
+                low = mid + 1
+        return -1
+        '''
+    new_list = [element - idx for idx, element in enumerate(sorted_list)]
+    return binary_search(new_list, 0)
+
+
+if __name__ == '__main__':
+    print(search_element_equal_to_index([-2,-1, 2, 8, 9]))
