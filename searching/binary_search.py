@@ -129,5 +129,40 @@ def search_element_equal_to_index(sorted_list: List):
     return binary_search(new_list, 0)
 
 
+def find_min_element_in_cyclically_sorted_list(cyclically_sorted_list: List):
+    """
+    Algorithm:
+
+    Think of the array as two segments divided by the inflection point.
+    cyclically_sorted_list = [7, 8, 9, 1, 2, 3, 4, 5, 6]
+    l, h = 0, len(sorted_list) - 1
+    while l < = h:
+        m = (l + h) // 2
+        if sorted_list[mid] > sorted_list[h]: ## min element can not be in the left segment
+            search in the segment mid+1, h
+        else:
+            min_idx = m
+            search in the segment l, mid - 1
+
+
+    :param cyclically_sorted_list:
+    :return:
+    """
+    low, high, minimum = 0, len(cyclically_sorted_list) - 1, -1
+    # loop will end when low == high
+    while low < high:
+        mid = int(high - (high - low) / 2)
+        if cyclically_sorted_list[mid] > cyclically_sorted_list[high]:
+            low = mid + 1
+        else:
+            high = mid
+
+    return high
+
+
+def find_element_in_rotated_sorted_array(cyclically_sorted_list: List, target: int):
+    pass
+
+
 if __name__ == '__main__':
-    print(search_element_equal_to_index([-2,-1, 2, 8, 9]))
+    print(find_min_element_in_cyclically_sorted_list([7, 8, 9, 2, 3, 4, 5, 6]))
