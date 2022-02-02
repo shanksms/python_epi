@@ -1,4 +1,5 @@
 from math import fsum
+from typing import Iterable
 
 
 def avg(nums):
@@ -33,9 +34,16 @@ def covariance(nums1, nums2):
     return sum_of_multiplications / (len(nums1) - 1)
 
 
+def variance(nums: Iterable):
+    _avg = avg(nums)
+    return sum([(num - _avg) ** 2 for num in nums]) / len(nums)
+
+
+
 if __name__ == '__main__':
     temperatures = [14.2, 16.4, 15.2, 22.6, 17.2]
     ice_cream_sales = [215, 325, 332, 445, 408]
     print(covariance(temperatures, ice_cream_sales))
+    print(variance(temperatures))
 
 
