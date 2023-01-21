@@ -22,27 +22,35 @@ Below is not a valid BST since 6 is more than 5 even it lies on the right side o
 
 """
 import math
+from typing import Optional
+
 from bst.bst import TreeNode
 
-
-def check_bst(root: TreeNode) -> bool:
-    """
-    Algorithm
-    min = -math.inf and max = math.max
-    we want to make root is always passing the condition. Hence we kept min and max what we kept.
-    1. At each level, the value should be in between max and min.
-    2. recurse left and pass currentlevel.val as max, min as min
-    3. recurse right and pass max as max, currentlevel.val as min
-    Key idea here is, that when you in case of left most nodes, you only need check their max value since they can
-    take any minimum value. Similarly for right most nodes, you only need to worry about their min value
-    since they can take any max value.
-    :param root:
-    :return:
-    """
-    def check_bst_helper(node: TreeNode, max_val, min_val) -> bool:
-        if not node:
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        """
+          Algorithm
+          min = -math.inf and max = math.max
+          we want to make root is always passing the condition. Hence we kept min and max what we kept.
+          1. At each level, the value should be in between max and min.
+          2. recurse left and pass currentlevel.val as max, min as min
+          3. recurse right and pass max as max, currentlevel.val as min
+          Key idea here is, that when you in case of left most nodes, you only need check their max value since they can
+          take any minimum value. Similarly for right most nodes, you only need to worry about their min value
+          since they can take any max value.
+          :param root:
+          :return:
+          """
+        if not root:
             return True
-        if node.val >= max_val or node.val <= min_val:
+        max_val = min_val = root.val
+        return self.helper(root.left, -math.inf, max_val) and self.helper(root.right, min_val, math.inf)
+
+    def helper(self, root, min_val, max_val):
+        if not root:
+            return True
+        if root.val <= min_val:
             return False
-        return check_bst_helper(node.left, node.val, min_val) and check_bst_helper(node.right, max_val, node.val)
-    return check_bst_helper(root, math.inf, -math.inf)
+        if root.val >= max_val:
+            return False
+        return self.helper(root.left, min_val, root.val) and self.helper(root.right, root.val, max_val)
