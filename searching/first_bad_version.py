@@ -35,16 +35,16 @@ class Solution:
         3. if you dont find bad version
             a. start = mid + 1
         """
-        arr = [i + 1 for i in range(n)]
+
         start = 0
         result = -1
         end = n - 1
         while end >= start:
             mid = int(end - (end - start) / 2)
-            if isBadVersion(arr[mid]):
+            if isBadVersion(mid + 1):
                 result = mid
                 end = mid - 1
             else:
                 start = mid + 1
-        return arr[result]
+        return result + 1
 
