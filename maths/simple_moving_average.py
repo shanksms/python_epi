@@ -1,28 +1,27 @@
 from queue import Queue
-
+from collections import deque
 
 class SMA:
     def __init__(self, window):
         self.window = window
-        self.price_queue = Queue()
-        self.sum = 0
-
+        self.queue = deque()
+        self.moving_sum = 0
     def sma(self, price):
-        if self.price_queue.qsize() < self.window:
-            self.sum += price
-            self.price_queue.put(price)
-            return self.sum / self.price_queue.qsize()
+        self.queue.append(price)
+        if len(self.queue) <= self.window:
+            self.moving_sum += price
+        else:
+            popped_price = self.queue.popleft()
+            self.moving_sum -= popped_price
+            self.moving_sum += price
+        return self.moving_sum / len(self.queue)
 
-        self.sum -= self.price_queue.get()
-        self.sum += price
-        self.price_queue.put(price)
-        return self.sum / self.window
 
 if __name__ == '__main__':
     sma = SMA(3)
-    print(sma.sma(1))
-    print(sma.sma(2))
-    print(sma.sma(3))
-    print(sma.sma(4))
-    print(sma.sma(5))
+    assert sma.sma(1) == 1.0
+    assert sma.sma(2) == 1.5
+    assert sma.sma(3) == 2.0
+    assert sma.sma(4) == 3.0
+    assert sma.sma(5) == 4.0
 
