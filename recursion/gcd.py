@@ -1,14 +1,9 @@
 
 
 def gcd(x, y):
-    if x > y:
-        x, y = y, x
-    if x == 0:
-        return y
-    elif y == 0:
-        return x
-    else:
-        return gcd(y % x, x)
+    if y > x:
+        y, x = x, y
+    return x if y == 0 else gcd(y, x % y)
 
 if __name__ == '__main__':
-    print(gcd(8, 7))
+    print(gcd(3, 9))
