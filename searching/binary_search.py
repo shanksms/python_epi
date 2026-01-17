@@ -33,33 +33,19 @@ def binary_search(_input: List, target: int):
 
 
 def find_first_occurrence(sorted_list: List, target: int) -> int:
-    """
-    Algorithm
-    input --> list
-    target --> int
-    low, high, result = 0, len(input), -1
-    while low <= high:
-        mid = int(low + (high - low) / 2)
-        if input[mid] > target:
-            high = mid - 1
-        elif input[mid] == target:
+    beg, end = 0, len(sorted_list) - 1
+    result = -1
+    while beg <= end:
+        mid = (beg + end) // 2
+        if sorted_list[mid] == target:
             result = mid
-            high = mid - 1
+            end = mid - 1
+        elif sorted_list[mid] > target:
+            end = mid - 1
         else:
-            low = mid + 1
+            beg = mid + 1
     return result
-    """
-    low, high, result = 0, len(sorted_list), -1
-    while low <= high:
-        mid = int(low + (high - low) / 2)
-        if sorted_list[mid] > target:
-            high = mid - 1
-        elif sorted_list[mid] == target:
-            result = mid
-            high = mid - 1
-        else:
-            low = mid + 1
-    return result
+
 
 
 def first_occurence_of_element_greater_than_key(sorted_list: List, target: int) -> int:

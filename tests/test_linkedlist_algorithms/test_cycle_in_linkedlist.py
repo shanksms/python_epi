@@ -4,13 +4,12 @@ from linkedlist_algorithms.linkedlist import ListNode
 
 
 def build_linked_list(values):
-    if not values:
-        return None
 
-    head = ListNode(values[0])
-    current = head
-    for v in values[1:]:
-        current.next = ListNode(v)
+    if not values:
+        raise ValueError('Invalid argument')
+    current = head = ListNode(data=values[0])
+    for value in values[1:]:
+        current.next = ListNode(data=value)
         current = current.next
     return head
 
