@@ -17,6 +17,26 @@ Explanation: Intervals [1,4] and [4,5] are considered overlapping.
 from typing import List
 
 
+def merge_intervals_another_method(intervals):
+    if not intervals:
+        return []
+
+    intervals = sorted(intervals, key=lambda x: x[0])
+    result = []
+
+    current = intervals[0]
+
+    for i in range(1, len(intervals)):
+        if current[1] >= intervals[i][0]:
+            current[1] = max(current[1], intervals[i][1])
+        else:
+            result.append(current)
+            current = intervals[i]
+
+    # always append last interval
+    result.append(current)
+
+    return result
 def merge_intervals(intervals: List[List[int]]) -> List[List[int]]:
     """
     Algorithm
